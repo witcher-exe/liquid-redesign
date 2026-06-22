@@ -5,7 +5,7 @@ import {
   Users, TreePine, GraduationCap, PawPrint, Stethoscope, Building2,
   Zap, CloudRain, Droplets, Sparkles, ChevronLeft, ChevronRight,
   Target, ListChecks, Quote, Menu, X, Mail, Phone, MapPin,
-  Facebook, Instagram, Twitter, Youtube, ChevronDown, Heart,
+  Facebook, Instagram, Twitter, Youtube, ChevronDown, Heart, ArrowUpRight,
 } from "lucide-react";
 
 import heroBg from "@/assets/hero-bg.jpg";
