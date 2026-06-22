@@ -5,7 +5,7 @@ import {
   Users, TreePine, GraduationCap, PawPrint, Stethoscope, Building2,
   Zap, CloudRain, Droplets, Sparkles, ChevronLeft, ChevronRight,
   Target, ListChecks, Quote, Menu, X, Mail, Phone, MapPin,
-  Facebook, Instagram, Twitter, Youtube, ChevronDown, Heart,
+  Facebook, Instagram, Twitter, Youtube, ChevronDown, Heart, ArrowUpRight,
 } from "lucide-react";
 
 import heroBg from "@/assets/hero-bg.jpg";
@@ -705,54 +705,79 @@ function CTA() {
 
 function Footer() {
   return (
-    <footer className="bg-ink text-white/70">
-      <div className="mx-auto max-w-7xl px-4 py-16 grid gap-10 md:grid-cols-5">
-        <div className="md:col-span-2">
-          <div className="flex items-center gap-2">
-            <div className="grid h-10 w-10 place-items-center rounded-full bg-gradient-to-br from-leaf-glow to-leaf">
+    <footer id="donate" className="relative mt-24 bg-ink text-white overflow-hidden">
+      {/* decorative blobs */}
+      <div className="absolute -top-32 -left-20 h-80 w-80 rounded-full bg-primary/30 blur-3xl animate-float-slow" />
+      <div className="absolute -bottom-32 -right-20 h-80 w-80 rounded-full bg-ember/20 blur-3xl animate-float-slow" />
+
+      <div className="relative mx-auto max-w-7xl px-5 py-20 grid lg:grid-cols-4 gap-12">
+        {/* brand */}
+        <div className="lg:col-span-1">
+          <div className="flex items-center gap-2 mb-4">
+            <div className="h-10 w-10 rounded-full bg-gradient-to-br from-leaf-glow to-leaf flex items-center justify-center shadow-lg shadow-leaf/30">
               <TreePine className="h-5 w-5 text-white" />
             </div>
-            <span className="text-2xl font-extrabold text-white">TeamBD</span>
+            <div className="font-bold">TeamBD</div>
           </div>
-          <p className="mt-4 text-sm max-w-sm">Because Bangladesh first. A volunteer-powered movement turning everyday action into national change.</p>
-          <div className="mt-5 flex gap-3">
-            {[Facebook, Instagram, Twitter, Youtube].map((Ic, i) => (
-              <a key={i} href="#" className="grid h-9 w-9 place-items-center rounded-full bg-white/10 hover:bg-leaf transition">
-                <Ic className="h-4 w-4" />
+          <p className="font-script text-ember text-sm">… because Bangladesh First.</p>
+          <p className="text-white/60 text-sm mt-4 leading-relaxed">
+            A volunteer-powered movement for a greener, kinder, and more equitable Bangladesh.
+          </p>
+          <div className="flex gap-3 mt-6">
+            {[Facebook, Instagram, Twitter, Youtube].map((I, i) => (
+              <a key={i} href="#" className="h-10 w-10 rounded-full border border-white/15 flex items-center justify-center hover:bg-leaf hover:border-leaf transition-all">
+                <I className="h-4 w-4" />
               </a>
             ))}
           </div>
         </div>
 
-        {[
-          { h: "Quick Links", items: ["About Us", "Our Activities", "Organization Policies", "Donation"] },
-          { h: "Help", items: ["FAQ", "Support", "Contact Us"] },
-        ].map((col) => (
-          <div key={col.h}>
-            <h4 className="text-white font-bold mb-4">{col.h}</h4>
-            <ul className="space-y-2 text-sm">
-              {col.items.map((it) => <li key={it}><a href="#" className="hover:text-leaf-glow transition">{it}</a></li>)}
-            </ul>
-          </div>
-        ))}
-
+        {/* quick links */}
         <div>
-          <h4 className="text-white font-bold mb-4">Contact Info</h4>
-          <ul className="space-y-3 text-sm">
-            <li className="flex gap-2"><MapPin className="h-4 w-4 shrink-0 text-leaf-glow" /> Bangladesh</li>
-            <li className="flex gap-2 break-all"><Mail className="h-4 w-4 shrink-0 text-leaf-glow" /> Contact.TeamBangladesh@gmail.com</li>
-            <li className="flex gap-2"><Phone className="h-4 w-4 shrink-0 text-leaf-glow" /> +880 197-4400321</li>
+          <h4 className="text-white text-sm font-semibold mb-4 uppercase tracking-wider">Explore</h4>
+          <ul className="space-y-2 text-white/70 text-sm">
+            {["About Us", "Our Activities", "Organization Policies", "Donation"].map((l) => (
+              <li key={l}><a href="#" className="hover:text-ember transition">{l}</a></li>
+            ))}
           </ul>
+        </div>
+
+        {/* contact */}
+        <div>
+          <h4 className="text-white text-sm font-semibold mb-4 uppercase tracking-wider">Contact</h4>
+          <ul className="space-y-3 text-white/70 text-sm">
+            <li className="flex gap-2"><MapPin className="h-4 w-4 text-leaf shrink-0 mt-0.5" /> Bangladesh</li>
+            <li className="flex gap-2 break-all"><Mail className="h-4 w-4 text-leaf shrink-0 mt-0.5" /> Contact.TeamBangladesh@gmail.com</li>
+            <li className="flex gap-2"><Phone className="h-4 w-4 text-leaf shrink-0 mt-0.5" /> +880 197-4400321</li>
+          </ul>
+        </div>
+
+        {/* newsletter */}
+        <div className="rounded-2xl bg-white/5 border border-white/10 p-6 backdrop-blur">
+          <div className="font-script text-ember text-sm">For causes that</div>
+          <h3 className="text-white text-2xl font-bold mb-3">Really Matter</h3>
+          <p className="text-white/60 text-sm mb-4">Join the newsletter — field updates & ways to help.</p>
+          <form onSubmit={(e) => e.preventDefault()} className="flex gap-2">
+            <input
+              type="email"
+              required
+              placeholder="your@email"
+              className="flex-1 rounded-full bg-white/10 px-4 py-2.5 text-sm text-white placeholder-white/40 outline-none focus:ring-2 focus:ring-leaf-glow"
+            />
+            <button className="rounded-full bg-gradient-to-r from-ember to-leaf-glow px-4 py-2.5 text-sm font-semibold text-ink shrink-0 hover:shadow-lg hover:shadow-ember/30 transition-all">
+              Join
+            </button>
+          </form>
         </div>
       </div>
 
-      <div className="border-t border-white/10">
-        <div className="mx-auto max-w-7xl px-4 py-6 flex flex-col md:flex-row gap-4 items-center justify-between text-xs">
+      <div className="relative border-t border-white/10">
+        <div className="mx-auto max-w-7xl px-5 py-6 flex flex-col md:flex-row gap-4 items-center justify-between text-xs text-white/50">
           <p>© 2024 Team Bangladesh. All Rights Reserved.</p>
           <div className="flex gap-6">
-            <a href="#" className="hover:text-leaf-glow">Terms of use</a>
-            <a href="#" className="hover:text-leaf-glow">Privacy policy</a>
-            <a href="#" className="hover:text-leaf-glow">Cookie policy</a>
+            <a href="#" className="hover:text-leaf-glow transition">Terms of use</a>
+            <a href="#" className="hover:text-leaf-glow transition">Privacy policy</a>
+            <a href="#" className="hover:text-leaf-glow transition">Cookie policy</a>
           </div>
         </div>
       </div>
