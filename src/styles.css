@@ -154,3 +154,40 @@
 .animate-rise { animation: rise 0.8s cubic-bezier(0.16, 1, 0.3, 1) both; }
 .animate-pulse-ring { animation: pulse-ring 2s ease-out infinite; }
 .animate-marquee { animation: marquee 40s linear infinite; }
+
+/* === Added for Mission/Campaigns/Events/Committees pages === */
+@theme inline {
+  --color-amber-glow: var(--amber-glow);
+  --color-mist: var(--mist);
+}
+:root {
+  --amber-glow: oklch(0.78 0.14 65);
+  --mist: oklch(0.97 0.005 150);
+}
+
+@utility script { font-family: var(--font-script); }
+@utility gradient-leaf {
+  background-image: linear-gradient(135deg, var(--color-leaf) 0%, var(--color-leaf-deep) 100%);
+}
+@utility gradient-warm {
+  background-image: linear-gradient(135deg, var(--color-amber-glow), oklch(0.7 0.16 45));
+}
+@utility text-balance { text-wrap: balance; }
+
+@keyframes blob {
+  0%, 100% { transform: translate(0,0) scale(1); }
+  33% { transform: translate(30px,-40px) scale(1.1); }
+  66% { transform: translate(-20px,20px) scale(0.95); }
+}
+@utility blob {
+  animation: blob 14s ease-in-out infinite;
+  filter: blur(60px);
+}
+@utility shimmer-text {
+  background: linear-gradient(90deg, var(--color-leaf), var(--color-amber-glow), var(--color-leaf));
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shimmer 6s linear infinite;
+}
