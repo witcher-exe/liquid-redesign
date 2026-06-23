@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import {
@@ -65,17 +65,53 @@ function SectionTitle({ children }: { children: React.ReactNode }) {
 
 /* ---------- navigation ---------- */
 
-const NAV = [
+type NavItem = { label: string; to?: string; href?: string };
+const NAV: { label: string; items: NavItem[] }[] = [
   {
     label: "About Us",
-    items: ["Our Mission And Vision", "How We Work", "Our Committees", "Our Working Arenas", "Partners", "Contact Us"],
+    items: [
+      { label: "Our Mission And Vision", to: "/mission" },
+      { label: "How We Work", href: "#about" },
+      { label: "Our Committees", to: "/committees" },
+      { label: "Our Working Arenas", href: "#areas" },
+      { label: "Partners", href: "#partners" },
+      { label: "Contact Us", href: "#contact" },
+    ],
   },
-  { label: "Campaigns", items: ["Events", "Campaigns", "Our Committees", "Photo Gallery", "Video Gallery", "Blog", "FAQ", "Join With Us (Volunteer)", "Products", "Donation"] },
+  {
+    label: "Campaigns",
+    items: [
+      { label: "Events", to: "/events" },
+      { label: "Campaigns", to: "/campaigns" },
+      { label: "Our Committees", to: "/committees" },
+      { label: "Photo Gallery", href: "#" },
+      { label: "Video Gallery", href: "#" },
+      { label: "Blog", href: "#" },
+      { label: "FAQ", href: "#" },
+      { label: "Join With Us (Volunteer)", href: "#join" },
+      { label: "Products", href: "#" },
+      { label: "Donation", href: "#join" },
+    ],
+  },
   {
     label: "More",
-    items: ["Monthly Recognition", "Green Club / Society", "Great Volunteer", "Great Leader", "Best District Committee", "Best Thana Committee", "Green School of this month", "Green Lover of this month"],
+    items: [
+      { label: "Monthly Recognition", href: "#" },
+      { label: "Green Club / Society", href: "#" },
+      { label: "Great Volunteer", href: "#" },
+      { label: "Great Leader", href: "#" },
+      { label: "Best District Committee", href: "#" },
+      { label: "Best Thana Committee", href: "#" },
+      { label: "Green School of this month", href: "#" },
+      { label: "Green Lover of this month", href: "#" },
+    ],
   },
 ];
+
+function NavLeaf({ it, className }: { it: NavItem; className: string }) {
+  if (it.to) return <Link to={it.to} className={className}>{it.label}</Link>;
+  return <a href={it.href ?? "#"} className={className}>{it.label}</a>;
+}
 
 function Navbar() {
   const [scrolled, setScrolled] = useState(false);
