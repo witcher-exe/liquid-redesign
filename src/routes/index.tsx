@@ -172,13 +172,11 @@ function Navbar() {
                     >
                       <div className="glass-card rounded-2xl p-2">
                         {m.items.map((it) => (
-                          <a
-                            key={it}
-                            href="#"
+                          <NavLeaf
+                            key={it.label}
+                            it={it}
                             className="block px-4 py-2.5 text-sm font-medium text-ink rounded-xl hover:bg-leaf/10 hover:text-leaf-deep transition"
-                          >
-                            {it}
-                          </a>
+                          />
                         ))}
                       </div>
                     </motion.div>
@@ -213,7 +211,7 @@ function Navbar() {
                     </summary>
                     <div className="pl-4">
                       {m.items.map((it) => (
-                        <a key={it} href="#" className="block px-3 py-2 text-sm text-muted-foreground hover:text-leaf">{it}</a>
+                        <NavLeaf key={it.label} it={it} className="block px-3 py-2 text-sm text-muted-foreground hover:text-leaf" />
                       ))}
                     </div>
                   </details>
