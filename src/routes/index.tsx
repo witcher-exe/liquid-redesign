@@ -1,12 +1,12 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
+import { createFileRoute } from "@tanstack/react-router";
+import { motion, useScroll, useTransform } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import {
   Users, TreePine, GraduationCap, PawPrint, Stethoscope, Building2,
   Zap, CloudRain, Droplets, Sparkles, ChevronLeft, ChevronRight,
-  Target, ListChecks, Quote, Menu, X, Mail, Phone, MapPin,
-  Facebook, Instagram, Twitter, Youtube, ChevronDown, Heart, ArrowUpRight,
+  Target, ListChecks, Quote, Heart, ArrowUpRight, ChevronDown,
 } from "lucide-react";
+import { SiteNavbar, SiteFooter } from "@/components/site/SiteChrome";
 
 import heroBg from "@/assets/hero-bg.jpg";
 import unity from "@/assets/unity.png";
