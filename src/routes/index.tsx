@@ -1,12 +1,13 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import {
   Users, TreePine, GraduationCap, PawPrint, Stethoscope, Building2,
   Zap, CloudRain, Droplets, Sparkles, ChevronLeft, ChevronRight,
-  Target, ListChecks, Quote, Menu, X, Mail, Phone, MapPin,
-  Facebook, Instagram, Twitter, Youtube, ChevronDown, Heart, ArrowUpRight,
+  Target, ListChecks, Quote, Heart, ArrowUpRight, ChevronDown,
+  Facebook, Instagram, Twitter, Youtube, Mail, Phone, MapPin,
 } from "lucide-react";
+import { SiteNavbar, SiteFooter } from "@/components/site/SiteChrome";
 
 import heroBg from "@/assets/hero-bg.jpg";
 import unity from "@/assets/unity.png";
@@ -63,246 +64,6 @@ function SectionTitle({ children }: { children: React.ReactNode }) {
   );
 }
 
-/* ---------- navigation ---------- */
-
-type NavItem = { label: string; to?: string; href?: string; items?: NavItem[] };
-type NavEntry = { label: string; to?: string; href?: string; items?: NavItem[] };
-
-const NAV: NavEntry[] = [
-  { label: "Home", to: "/" },
-  {
-    label: "About Us",
-    items: [
-      { label: "Our Mission And Vision", to: "/mission" },
-      { label: "How We Work", href: "/#about" },
-      { label: "Our Committees", to: "/committees" },
-      { label: "Our Working Arenas", href: "/#areas" },
-      { label: "Partners", href: "/#partners" },
-      { label: "Contact Us", href: "/#contact" },
-    ],
-  },
-  { label: "Campaigns", to: "/campaigns" },
-  {
-    label: "More",
-    items: [
-      {
-        label: "Monthly Recognition",
-        items: [
-          { label: "Green Club / Society", href: "#" },
-          { label: "Great Volunteer", href: "#" },
-          { label: "Great Leader", href: "#" },
-          { label: "Best District Committee", href: "#" },
-          { label: "Best Thana Committee", href: "#" },
-          { label: "Green School of this month", href: "#" },
-          { label: "Green Lover of this month", href: "#" },
-        ],
-      },
-      { label: "Events", to: "/events" },
-      { label: "Campaigns", to: "/campaigns" },
-      { label: "Our Committees", to: "/committees" },
-      { label: "Photo Gallery", href: "#" },
-      { label: "Video Gallery", href: "#" },
-      { label: "Blog", href: "#" },
-      { label: "FAQ", href: "#" },
-      { label: "Join With Us (Volunteer)", href: "/#join" },
-      { label: "Products", href: "#" },
-      { label: "Donation", href: "/#join" },
-    ],
-  },
-];
-
-function NavLeaf({ it, className }: { it: NavItem; className: string }) {
-  if (it.to) return <Link to={it.to} className={className}>{it.label}</Link>;
-  return <a href={it.href ?? "#"} className={className}>{it.label}</a>;
-}
-
-function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
-  const [open, setOpen] = useState(false);
-  const [activeMenu, setActiveMenu] = useState<string | null>(null);
-  const [activeSub, setActiveSub] = useState<string | null>(null);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 30);
-    onScroll();
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
-
-  return (
-    <motion.header
-      initial={{ y: -80, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled ? "py-2" : "py-4"
-      }`}
-    >
-      <div className="mx-auto max-w-7xl px-4">
-        <div className={`flex items-center justify-between rounded-2xl px-4 md:px-6 py-3 transition-all duration-500 ${
-          scrolled ? "glass" : "glass-dark"
-        }`}>
-          <Link to="/" className="flex items-center gap-2 shrink-0">
-            <div className="grid h-10 w-10 place-items-center rounded-full bg-gradient-to-br from-leaf-glow to-leaf shadow-lg">
-              <TreePine className="h-5 w-5 text-white" />
-            </div>
-            <span className={`font-extrabold text-lg tracking-tight ${scrolled ? "text-ink" : "text-white"}`}>
-              TeamBD
-            </span>
-          </Link>
-
-          <nav className="hidden lg:flex items-center gap-1">
-            {NAV.map((m) => {
-              const triggerClass = `flex items-center gap-1 px-4 py-2 text-sm font-semibold uppercase tracking-wider rounded-lg transition ${
-                scrolled ? "text-ink hover:text-leaf" : "text-white/90 hover:text-white"
-              }`;
-              if (!m.items) {
-                return (
-                  <NavLeaf key={m.label} it={m} className={triggerClass} />
-                );
-              }
-              return (
-                <div
-                  key={m.label}
-                  className="relative"
-                  onMouseEnter={() => setActiveMenu(m.label)}
-                  onMouseLeave={() => { setActiveMenu(null); setActiveSub(null); }}
-                >
-                  <button className={triggerClass}>
-                    {m.label}
-                    <ChevronDown className="h-3.5 w-3.5" />
-                  </button>
-                  <AnimatePresence>
-                    {activeMenu === m.label && (
-                      <motion.div
-                        initial={{ opacity: 0, y: 8, scale: 0.96 }}
-                        animate={{ opacity: 1, y: 0, scale: 1 }}
-                        exit={{ opacity: 0, y: 8, scale: 0.96 }}
-                        transition={{ duration: 0.18 }}
-                        className="absolute left-0 top-full pt-2 w-64"
-                      >
-                        <div className="glass-card rounded-2xl p-2">
-                          {m.items!.map((it) => {
-                            if (it.items) {
-                              return (
-                                <div
-                                  key={it.label}
-                                  className="relative"
-                                  onMouseEnter={() => setActiveSub(it.label)}
-                                  onMouseLeave={() => setActiveSub(null)}
-                                >
-                                  <button className="w-full flex items-center justify-between px-4 py-2.5 text-sm font-medium text-ink rounded-xl hover:bg-leaf/10 hover:text-leaf-deep transition">
-                                    <span>{it.label}</span>
-                                    <ChevronRight className="h-3.5 w-3.5" />
-                                  </button>
-                                  <AnimatePresence>
-                                    {activeSub === it.label && (
-                                      <motion.div
-                                        initial={{ opacity: 0, x: -8 }}
-                                        animate={{ opacity: 1, x: 0 }}
-                                        exit={{ opacity: 0, x: -8 }}
-                                        transition={{ duration: 0.18 }}
-                                        className="absolute left-full top-0 pl-2 w-64"
-                                      >
-                                        <div className="glass-card rounded-2xl p-2">
-                                          {it.items.map((sub) => (
-                                            <NavLeaf
-                                              key={sub.label}
-                                              it={sub}
-                                              className="block px-4 py-2.5 text-sm font-medium text-ink rounded-xl hover:bg-leaf/10 hover:text-leaf-deep transition"
-                                            />
-                                          ))}
-                                        </div>
-                                      </motion.div>
-                                    )}
-                                  </AnimatePresence>
-                                </div>
-                              );
-                            }
-                            return (
-                              <NavLeaf
-                                key={it.label}
-                                it={it}
-                                className="block px-4 py-2.5 text-sm font-medium text-ink rounded-xl hover:bg-leaf/10 hover:text-leaf-deep transition"
-                              />
-                            );
-                          })}
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
-              );
-            })}
-            <a href="#join" className="ml-3 px-5 py-2.5 rounded-full bg-ember text-white text-sm font-bold uppercase tracking-wider shadow-lg hover:scale-105 transition">
-              Donate
-            </a>
-          </nav>
-
-          <button onClick={() => setOpen(!open)} className={`lg:hidden p-2 rounded-lg ${scrolled ? "text-ink" : "text-white"}`}>
-            {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-          </button>
-        </div>
-
-        <AnimatePresence>
-          {open && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              className="lg:hidden mt-2 glass-card rounded-2xl overflow-hidden"
-            >
-              <div className="p-4 space-y-1 max-h-[70vh] overflow-y-auto">
-                {NAV.map((m) => {
-                  if (!m.items) {
-                    return (
-                      <NavLeaf
-                        key={m.label}
-                        it={m}
-                        className="block px-3 py-3 text-sm font-bold uppercase tracking-wider text-ink rounded-lg hover:bg-leaf/10"
-                      />
-                    );
-                  }
-                  return (
-                    <details key={m.label} className="group">
-                      <summary className="flex items-center justify-between px-3 py-3 text-sm font-bold uppercase tracking-wider text-ink cursor-pointer rounded-lg hover:bg-leaf/10">
-                        {m.label}
-                        <ChevronDown className="h-4 w-4 group-open:rotate-180 transition" />
-                      </summary>
-                      <div className="pl-4">
-                        {m.items.map((it) => {
-                          if (it.items) {
-                            return (
-                              <details key={it.label} className="group/sub">
-                                <summary className="flex items-center justify-between px-3 py-2 text-sm font-semibold text-ink cursor-pointer rounded-lg hover:bg-leaf/10">
-                                  {it.label}
-                                  <ChevronDown className="h-3.5 w-3.5 group-open/sub:rotate-180 transition" />
-                                </summary>
-                                <div className="pl-4">
-                                  {it.items.map((sub) => (
-                                    <NavLeaf key={sub.label} it={sub} className="block px-3 py-2 text-sm text-muted-foreground hover:text-leaf" />
-                                  ))}
-                                </div>
-                              </details>
-                            );
-                          }
-                          return (
-                            <NavLeaf key={it.label} it={it} className="block px-3 py-2 text-sm text-muted-foreground hover:text-leaf" />
-                          );
-                        })}
-                      </div>
-                    </details>
-                  );
-                })}
-                <a href="#join" className="block mt-2 px-5 py-3 text-center rounded-full bg-ember text-white font-bold uppercase tracking-wider">Donate</a>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </div>
-    </motion.header>
-  );
-}
 
 /* ---------- hero ---------- */
 
@@ -813,96 +574,13 @@ function CTA() {
   );
 }
 
-/* ---------- footer ---------- */
-
-function Footer() {
-  return (
-    <footer id="donate" className="relative mt-24 bg-ink text-white overflow-hidden">
-      {/* decorative blobs */}
-      <div className="absolute -top-32 -left-20 h-80 w-80 rounded-full bg-primary/30 blur-3xl animate-float-slow" />
-      <div className="absolute -bottom-32 -right-20 h-80 w-80 rounded-full bg-ember/20 blur-3xl animate-float-slow" />
-
-      <div className="relative mx-auto max-w-7xl px-5 py-20 grid lg:grid-cols-4 gap-12">
-        {/* brand */}
-        <div className="lg:col-span-1">
-          <div className="flex items-center gap-2 mb-4">
-            <div className="h-10 w-10 rounded-full bg-gradient-to-br from-leaf-glow to-leaf flex items-center justify-center shadow-lg shadow-leaf/30">
-              <TreePine className="h-5 w-5 text-white" />
-            </div>
-            <div className="font-bold">TeamBD</div>
-          </div>
-          <p className="font-script text-ember text-sm">… because Bangladesh First.</p>
-          <p className="text-white/60 text-sm mt-4 leading-relaxed">
-            A volunteer-powered movement for a greener, kinder, and more equitable Bangladesh.
-          </p>
-          <div className="flex gap-3 mt-6">
-            {[Facebook, Instagram, Twitter, Youtube].map((I, i) => (
-              <a key={i} href="#" className="h-10 w-10 rounded-full border border-white/15 flex items-center justify-center hover:bg-leaf hover:border-leaf transition-all">
-                <I className="h-4 w-4" />
-              </a>
-            ))}
-          </div>
-        </div>
-
-        {/* quick links */}
-        <div>
-          <h4 className="text-white text-sm font-semibold mb-4 uppercase tracking-wider">Explore</h4>
-          <ul className="space-y-2 text-white/70 text-sm">
-            {["About Us", "Our Activities", "Organization Policies", "Donation"].map((l) => (
-              <li key={l}><a href="#" className="hover:text-ember transition">{l}</a></li>
-            ))}
-          </ul>
-        </div>
-
-        {/* contact */}
-        <div>
-          <h4 className="text-white text-sm font-semibold mb-4 uppercase tracking-wider">Contact</h4>
-          <ul className="space-y-3 text-white/70 text-sm">
-            <li className="flex gap-2"><MapPin className="h-4 w-4 text-leaf shrink-0 mt-0.5" /> Bangladesh</li>
-            <li className="flex gap-2 break-all"><Mail className="h-4 w-4 text-leaf shrink-0 mt-0.5" /> Contact.TeamBangladesh@gmail.com</li>
-            <li className="flex gap-2"><Phone className="h-4 w-4 text-leaf shrink-0 mt-0.5" /> +880 197-4400321</li>
-          </ul>
-        </div>
-
-        {/* newsletter */}
-        <div className="rounded-2xl bg-white/5 border border-white/10 p-6 backdrop-blur">
-          <div className="font-script text-ember text-sm">For causes that</div>
-          <h3 className="text-white text-2xl font-bold mb-3">Really Matter</h3>
-          <p className="text-white/60 text-sm mb-4">Join the newsletter — field updates & ways to help.</p>
-          <form onSubmit={(e) => e.preventDefault()} className="flex gap-2">
-            <input
-              type="email"
-              required
-              placeholder="your@email"
-              className="flex-1 rounded-full bg-white/10 px-4 py-2.5 text-sm text-white placeholder-white/40 outline-none focus:ring-2 focus:ring-leaf-glow"
-            />
-            <button className="rounded-full bg-gradient-to-r from-ember to-leaf-glow px-4 py-2.5 text-sm font-semibold text-ink shrink-0 hover:shadow-lg hover:shadow-ember/30 transition-all">
-              Join
-            </button>
-          </form>
-        </div>
-      </div>
-
-      <div className="relative border-t border-white/10">
-        <div className="mx-auto max-w-7xl px-5 py-6 flex flex-col md:flex-row gap-4 items-center justify-between text-xs text-white/50">
-          <p>© 2024 Team Bangladesh. All Rights Reserved.</p>
-          <div className="flex gap-6">
-            <a href="#" className="hover:text-leaf-glow transition">Terms of use</a>
-            <a href="#" className="hover:text-leaf-glow transition">Privacy policy</a>
-            <a href="#" className="hover:text-leaf-glow transition">Cookie policy</a>
-          </div>
-        </div>
-      </div>
-    </footer>
-  );
-}
 
 /* ---------- page ---------- */
 
 function Index() {
   return (
     <div className="bg-ivory text-ink overflow-x-hidden">
-      <Navbar />
+      <SiteNavbar transparentOnTop />
       <Hero />
       <About />
       <KeyAreas />
@@ -911,7 +589,7 @@ function Index() {
       <Mission />
       <Testimonial />
       <CTA />
-      <Footer />
+      <SiteFooter />
     </div>
   );
 }
