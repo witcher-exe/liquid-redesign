@@ -323,8 +323,8 @@ export function SiteFooter() {
       <div className="absolute -top-32 -left-20 h-80 w-80 rounded-full bg-primary/30 blur-3xl animate-float-slow" />
       <div className="absolute -bottom-32 -right-20 h-80 w-80 rounded-full bg-ember/20 blur-3xl animate-float-slow" />
 
-      <div className="relative mx-auto max-w-7xl px-5 py-20 grid lg:grid-cols-4 gap-12">
-        <div className="lg:col-span-1">
+      <div className="relative mx-auto max-w-7xl px-5 py-20 grid lg:grid-cols-6 gap-12">
+        <div className="lg:col-span-2">
           <div className="flex items-center gap-2 mb-4">
             <div className="h-10 w-10 rounded-full bg-gradient-to-br from-leaf-glow to-leaf flex items-center justify-center shadow-lg shadow-leaf/30">
               <TreePine className="h-5 w-5 text-white" />
@@ -351,25 +351,38 @@ export function SiteFooter() {
         </div>
 
         <div>
-          <h4 className="text-white text-sm font-semibold mb-4 uppercase tracking-wider">Explore</h4>
+          <h4 className="text-white text-sm font-semibold mb-4 uppercase tracking-wider">Quick Links</h4>
           <ul className="space-y-2 text-white/70 text-sm">
             {[
-              { label: "Mission", to: "/mission" as const },
-              { label: "Campaigns", to: "/campaigns" as const },
-              { label: "Events", to: "/events" as const },
-              { label: "Committees", to: "/committees" as const },
+              { label: "About Us", href: "/#about" },
+              { label: "Our Activities", href: "/#areas" },
+              { label: "Organization Policies", href: "#" },
+              { label: "Donation", href: "/#join" },
             ].map((l) => (
-              <li key={l.label}><Link to={l.to} className="hover:text-ember transition story-link">{l.label}</Link></li>
+              <li key={l.label}><a href={l.href} className="hover:text-ember transition story-link">{l.label}</a></li>
             ))}
           </ul>
         </div>
 
         <div>
-          <h4 className="text-white text-sm font-semibold mb-4 uppercase tracking-wider">Contact</h4>
+          <h4 className="text-white text-sm font-semibold mb-4 uppercase tracking-wider">Help</h4>
+          <ul className="space-y-2 text-white/70 text-sm">
+            {[
+              { label: "FAQ", href: "#" },
+              { label: "Support", href: "#" },
+              { label: "Contact Us", href: "/#contact" },
+            ].map((l) => (
+              <li key={l.label}><a href={l.href} className="hover:text-ember transition story-link">{l.label}</a></li>
+            ))}
+          </ul>
+        </div>
+
+        <div>
+          <h4 className="text-white text-sm font-semibold mb-4 uppercase tracking-wider">Contact Info</h4>
           <ul className="space-y-3 text-white/70 text-sm">
             <li className="flex gap-2"><MapPin className="h-4 w-4 text-leaf shrink-0 mt-0.5" /> Bangladesh</li>
             <li className="flex gap-2 break-all"><Mail className="h-4 w-4 text-leaf shrink-0 mt-0.5" /> Contact.TeamBangladesh@gmail.com</li>
-            <li className="flex gap-2"><Phone className="h-4 w-4 text-leaf shrink-0 mt-0.5" /> +880 197-4400321</li>
+            <li className="flex gap-2"><Phone className="h-4 w-4 text-leaf shrink-0 mt-0.5" /> +880 1911-480021</li>
           </ul>
         </div>
 

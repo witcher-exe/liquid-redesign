@@ -6,7 +6,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
   return (
     <div className="min-h-screen flex flex-col bg-background text-foreground">
       <SiteNavbar />
-      <main className="flex-1 pt-24">{children}</main>
+      <main className="flex-1">{children}</main>
       <SiteFooter />
     </div>
   );
@@ -26,7 +26,7 @@ export function PageHero({
   stats?: { label: string; value: string }[];
 }) {
   return (
-    <section className="relative overflow-hidden pt-16 pb-24 lg:pt-24 lg:pb-32 bg-ink text-white">
+    <section className="relative overflow-hidden pt-40 pb-24 lg:pt-48 lg:pb-32 bg-ink text-white">
       <div className="absolute inset-0">
         <img src={image} alt="" className="h-full w-full object-cover opacity-40" />
         <div className="absolute inset-0 bg-gradient-to-br from-ink via-ink/85 to-leaf-deep/70" />
