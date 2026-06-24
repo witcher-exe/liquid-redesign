@@ -1,10 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import {
   Users, TreePine, GraduationCap, PawPrint, Stethoscope, Building2,
   Zap, CloudRain, Droplets, Sparkles, ChevronLeft, ChevronRight,
   Target, ListChecks, Quote, Heart, ArrowUpRight, ChevronDown,
+  Facebook, Instagram, Twitter, Youtube, Mail, Phone, MapPin,
 } from "lucide-react";
 import { SiteNavbar, SiteFooter } from "@/components/site/SiteChrome";
 
