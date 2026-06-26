@@ -405,7 +405,7 @@ export function SiteFooter() {
       </div>
 
       <div className="relative border-t border-white/10">
-        <div className="mx-auto max-w-7xl px-5 py-6 flex flex-col md:flex-row gap-4 items-center justify-between text-xs text-white/50">
+        <div className="mx-auto max-w-[1600px] px-10 lg:px-16 py-6 flex flex-col md:flex-row gap-4 items-center justify-between text-xs text-white/50">
           <p>© 2024 Team Bangladesh. All Rights Reserved.</p>
           <div className="flex gap-6">
             <a href="#" className="hover:text-leaf-glow transition">Terms of use</a>
