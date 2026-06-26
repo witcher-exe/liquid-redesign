@@ -161,9 +161,10 @@ export function SiteNavbar({ transparentOnTop = false }: { transparentOnTop?: bo
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: 8, scale: 0.96 }}
                         transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
-                        className="absolute left-0 top-full pt-2 w-64"
+                        className="absolute left-0 top-full pt-4 w-64"
                       >
-                        <div className="glass-card rounded-2xl p-2 shadow-2xl ring-1 ring-leaf/10">
+                        <div className="glass-card rounded-xl p-2 shadow-2xl ring-1 ring-leaf/10">
+
                           {m.items!.map((it, idx) => {
                             if (it.items) {
                               const subActive = activeSub === it.label;
