@@ -323,7 +323,7 @@ export function SiteFooter() {
       <div className="absolute -top-32 -left-20 h-80 w-80 rounded-full bg-primary/30 blur-3xl animate-float-slow" />
       <div className="absolute -bottom-32 -right-20 h-80 w-80 rounded-full bg-ember/20 blur-3xl animate-float-slow" />
 
-      <div className="relative mx-auto max-w-[1600px] px-10 lg:px-16 py-20 grid lg:grid-cols-6 gap-10">
+      <div className="relative mx-auto max-w-[1600px] px-6 md:px-10 lg:px-16 py-20 grid gap-10 md:grid-cols-2 lg:grid-cols-7">
         <div className="lg:col-span-2">
           <div className="flex items-center gap-2 mb-4">
             <div className="h-10 w-10 rounded-full bg-gradient-to-br from-leaf-glow to-leaf flex items-center justify-center shadow-lg shadow-leaf/30">
