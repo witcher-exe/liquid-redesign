@@ -386,7 +386,7 @@ export function SiteFooter() {
           </ul>
         </div>
 
-        <div className="rounded-2xl bg-white/5 border border-white/10 p-6 backdrop-blur">
+        <div className="md:col-span-2 lg:col-span-2 rounded-2xl bg-white/5 border border-white/10 p-6 backdrop-blur">
           <div className="font-script text-ember text-sm">For causes that</div>
           <h3 className="text-white text-2xl font-bold mb-3">Really Matter</h3>
           <p className="text-white/60 text-sm mb-4">Join the newsletter — field updates & ways to help.</p>
