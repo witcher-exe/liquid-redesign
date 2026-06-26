@@ -376,7 +376,7 @@ function Team() {
         <SectionEyebrow>Leadership</SectionEyebrow>
         <SectionTitle>Our Executive Team</SectionTitle>
 
-        <div className="relative mt-14">
+        <div className="relative mt-14 px-2 md:px-16">
           <div className="glass-card rounded-3xl p-6 md:p-12 mx-auto max-w-5xl">
             <AnimatePresence mode="wait">
               <motion.div
@@ -389,10 +389,10 @@ function Team() {
               >
                 <div className="relative mx-auto">
                   <div className="absolute -inset-2 rounded-3xl bg-gradient-to-br from-leaf-glow to-ember opacity-50 blur-xl" />
-                  <img src={m.img} alt={m.name} width={400} height={400} loading="lazy" className="relative h-64 w-64 md:h-80 md:w-80 object-cover rounded-3xl border-4 border-white shadow-2xl" />
+                  <img src={m.img} alt={m.name} width={400} height={400} loading="lazy" className="relative h-56 w-56 sm:h-64 sm:w-64 md:h-80 md:w-80 object-cover rounded-3xl border-4 border-white shadow-2xl" />
                 </div>
                 <div>
-                  <h3 className="text-3xl md:text-4xl font-extrabold text-ink">{m.name}</h3>
+                  <h3 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-ink">{m.name}</h3>
                   <p className="mt-2 text-leaf font-semibold">{m.role}</p>
                   <p className="mt-1 text-leaf-deep font-bold">{m.org}</p>
                   <p className="mt-5 text-muted-foreground leading-relaxed">{m.bio}</p>
@@ -408,10 +408,10 @@ function Team() {
             </AnimatePresence>
           </div>
 
-          <button onClick={prev} className="absolute left-2 md:-left-4 top-1/2 -translate-y-1/2 grid h-12 w-12 place-items-center rounded-full glass hover:scale-110 transition">
+          <button onClick={prev} aria-label="Previous" className="absolute left-0 md:left-2 top-1/2 -translate-y-1/2 grid h-10 w-10 md:h-12 md:w-12 place-items-center rounded-full glass hover:scale-110 transition shadow-lg z-10">
             <ChevronLeft className="h-5 w-5 text-leaf-deep" />
           </button>
-          <button onClick={next} className="absolute right-2 md:-right-4 top-1/2 -translate-y-1/2 grid h-12 w-12 place-items-center rounded-full glass hover:scale-110 transition">
+          <button onClick={next} aria-label="Next" className="absolute right-0 md:right-2 top-1/2 -translate-y-1/2 grid h-10 w-10 md:h-12 md:w-12 place-items-center rounded-full glass hover:scale-110 transition shadow-lg z-10">
             <ChevronRight className="h-5 w-5 text-leaf-deep" />
           </button>
 
@@ -425,6 +425,7 @@ function Team() {
             ))}
           </div>
         </div>
+
       </div>
     </section>
   );

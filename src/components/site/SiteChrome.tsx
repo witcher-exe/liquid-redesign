@@ -161,9 +161,10 @@ export function SiteNavbar({ transparentOnTop = false }: { transparentOnTop?: bo
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: 8, scale: 0.96 }}
                         transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
-                        className="absolute left-0 top-full pt-2 w-64"
+                        className="absolute left-0 top-full pt-4 w-64"
                       >
-                        <div className="glass-card rounded-2xl p-2 shadow-2xl ring-1 ring-leaf/10">
+                        <div className="glass-card rounded-xl p-2 shadow-2xl ring-1 ring-leaf/10">
+
                           {m.items!.map((it, idx) => {
                             if (it.items) {
                               const subActive = activeSub === it.label;
@@ -193,9 +194,10 @@ export function SiteNavbar({ transparentOnTop = false }: { transparentOnTop?: bo
                                         animate={{ opacity: 1, x: 0, scale: 1 }}
                                         exit={{ opacity: 0, x: -10, scale: 0.96 }}
                                         transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                                        className="absolute left-full top-0 pl-2 w-64"
+                                        className="absolute left-full top-0 pl-4 w-64"
                                       >
-                                        <div className="glass-card rounded-2xl p-2 shadow-2xl ring-1 ring-leaf/10">
+                                        <div className="glass-card rounded-xl p-2 shadow-2xl ring-1 ring-leaf/10">
+
                                           {it.items.map((sub, si) => (
                                             <motion.div
                                               key={sub.label}
@@ -323,7 +325,7 @@ export function SiteFooter() {
       <div className="absolute -top-32 -left-20 h-80 w-80 rounded-full bg-primary/30 blur-3xl animate-float-slow" />
       <div className="absolute -bottom-32 -right-20 h-80 w-80 rounded-full bg-ember/20 blur-3xl animate-float-slow" />
 
-      <div className="relative mx-auto max-w-[1600px] px-10 lg:px-16 py-20 grid lg:grid-cols-6 gap-10">
+      <div className="relative mx-auto max-w-[1600px] px-6 md:px-10 lg:px-16 py-20 grid gap-10 md:grid-cols-2 lg:grid-cols-7">
         <div className="lg:col-span-2">
           <div className="flex items-center gap-2 mb-4">
             <div className="h-10 w-10 rounded-full bg-gradient-to-br from-leaf-glow to-leaf flex items-center justify-center shadow-lg shadow-leaf/30">
@@ -386,7 +388,7 @@ export function SiteFooter() {
           </ul>
         </div>
 
-        <div className="rounded-2xl bg-white/5 border border-white/10 p-6 backdrop-blur">
+        <div className="md:col-span-2 lg:col-span-2 rounded-2xl bg-white/5 border border-white/10 p-6 backdrop-blur">
           <div className="font-script text-ember text-sm">For causes that</div>
           <h3 className="text-white text-2xl font-bold mb-3">Really Matter</h3>
           <p className="text-white/60 text-sm mb-4">Join the newsletter — field updates & ways to help.</p>
