@@ -194,9 +194,10 @@ export function SiteNavbar({ transparentOnTop = false }: { transparentOnTop?: bo
                                         animate={{ opacity: 1, x: 0, scale: 1 }}
                                         exit={{ opacity: 0, x: -10, scale: 0.96 }}
                                         transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                                        className="absolute left-full top-0 pl-2 w-64"
+                                        className="absolute left-full top-0 pl-4 w-64"
                                       >
-                                        <div className="glass-card rounded-2xl p-2 shadow-2xl ring-1 ring-leaf/10">
+                                        <div className="glass-card rounded-xl p-2 shadow-2xl ring-1 ring-leaf/10">
+
                                           {it.items.map((sub, si) => (
                                             <motion.div
                                               key={sub.label}
