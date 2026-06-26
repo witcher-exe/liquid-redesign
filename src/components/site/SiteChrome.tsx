@@ -323,7 +323,7 @@ export function SiteFooter() {
       <div className="absolute -top-32 -left-20 h-80 w-80 rounded-full bg-primary/30 blur-3xl animate-float-slow" />
       <div className="absolute -bottom-32 -right-20 h-80 w-80 rounded-full bg-ember/20 blur-3xl animate-float-slow" />
 
-      <div className="relative mx-auto max-w-7xl px-5 py-20 grid lg:grid-cols-6 gap-12">
+      <div className="relative mx-auto max-w-[1600px] px-10 lg:px-16 py-20 grid lg:grid-cols-6 gap-10">
         <div className="lg:col-span-2">
           <div className="flex items-center gap-2 mb-4">
             <div className="h-10 w-10 rounded-full bg-gradient-to-br from-leaf-glow to-leaf flex items-center justify-center shadow-lg shadow-leaf/30">
@@ -405,7 +405,7 @@ export function SiteFooter() {
       </div>
 
       <div className="relative border-t border-white/10">
-        <div className="mx-auto max-w-7xl px-5 py-6 flex flex-col md:flex-row gap-4 items-center justify-between text-xs text-white/50">
+        <div className="mx-auto max-w-[1600px] px-10 lg:px-16 py-6 flex flex-col md:flex-row gap-4 items-center justify-between text-xs text-white/50">
           <p>© 2024 Team Bangladesh. All Rights Reserved.</p>
           <div className="flex gap-6">
             <a href="#" className="hover:text-leaf-glow transition">Terms of use</a>

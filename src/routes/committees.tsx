@@ -113,13 +113,14 @@ function Committees() {
               <h2 className="text-4xl lg:text-5xl font-bold mt-4">The Central Committee.</h2>
             </div>
           </Reveal>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {EXEC.map((p, i) => (
               <Reveal key={p.n} delay={i * 0.08}>
                 <PersonCard p={p} />
               </Reveal>
             ))}
           </div>
+
         </div>
       </section>
 
