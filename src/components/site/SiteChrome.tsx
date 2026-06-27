@@ -263,9 +263,10 @@ export function SiteNavbar({ transparentOnTop = false }: { transparentOnTop?: bo
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
+              transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
               className="lg:hidden mt-2 glass-card rounded-2xl overflow-hidden"
             >
-              <div className="p-4 space-y-1 max-h-[70vh] overflow-y-auto">
+              <div className="p-4 space-y-1 max-h-[75vh] overflow-y-auto">
                 {NAV.map((m) => {
                   if (!m.items) {
                     return (
@@ -277,38 +278,74 @@ export function SiteNavbar({ transparentOnTop = false }: { transparentOnTop?: bo
                       />
                     );
                   }
+                  const isOpen = activeMenu === m.label;
                   return (
-                    <details key={m.label} className="group">
-                      <summary className="flex items-center justify-between px-3 py-3 text-sm font-bold uppercase tracking-wider text-ink cursor-pointer rounded-lg hover:bg-leaf/10">
+                    <div key={m.label}>
+                      <button
+                        onClick={() => setActiveMenu(isOpen ? null : m.label)}
+                        className="w-full flex items-center justify-between px-3 py-3 text-sm font-bold uppercase tracking-wider text-ink rounded-lg hover:bg-leaf/10"
+                      >
                         {m.label}
-                        <ChevronDown className="h-4 w-4 group-open:rotate-180 transition" />
-                      </summary>
-                      <div className="pl-4">
-                        {m.items.map((it) => {
-                          if (it.items) {
-                            return (
-                              <details key={it.label} className="group/sub">
-                                <summary className="flex items-center justify-between px-3 py-2 text-sm font-semibold text-ink cursor-pointer rounded-lg hover:bg-leaf/10">
-                                  {it.label}
-                                  <ChevronDown className="h-3.5 w-3.5 group-open/sub:rotate-180 transition" />
-                                </summary>
-                                <div className="pl-4">
-                                  {it.items.map((sub) => (
-                                    <NavLeaf key={sub.label} it={sub} onClick={() => setOpen(false)} className="block px-3 py-2 text-sm text-muted-foreground hover:text-leaf" />
-                                  ))}
-                                </div>
-                              </details>
-                            );
-                          }
-                          return (
-                            <NavLeaf key={it.label} it={it} onClick={() => setOpen(false)} className="block px-3 py-2 text-sm text-muted-foreground hover:text-leaf" />
-                          );
-                        })}
-                      </div>
-                    </details>
+                        <motion.span animate={{ rotate: isOpen ? 180 : 0 }} transition={{ duration: 0.3 }}>
+                          <ChevronDown className="h-4 w-4" />
+                        </motion.span>
+                      </button>
+                      <AnimatePresence initial={false}>
+                        {isOpen && (
+                          <motion.div
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: "auto", opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                            className="overflow-hidden"
+                          >
+                            <div className="pl-4 py-1">
+                              {m.items.map((it) => {
+                                if (it.items) {
+                                  const subOpen = activeSub === it.label;
+                                  return (
+                                    <div key={it.label}>
+                                      <button
+                                        onClick={() => setActiveSub(subOpen ? null : it.label)}
+                                        className="w-full flex items-center justify-between px-3 py-2 text-sm font-semibold text-ink rounded-lg hover:bg-leaf/10"
+                                      >
+                                        {it.label}
+                                        <motion.span animate={{ rotate: subOpen ? 180 : 0 }} transition={{ duration: 0.3 }}>
+                                          <ChevronDown className="h-3.5 w-3.5" />
+                                        </motion.span>
+                                      </button>
+                                      <AnimatePresence initial={false}>
+                                        {subOpen && (
+                                          <motion.div
+                                            initial={{ height: 0, opacity: 0 }}
+                                            animate={{ height: "auto", opacity: 1 }}
+                                            exit={{ height: 0, opacity: 0 }}
+                                            transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+                                            className="overflow-hidden"
+                                          >
+                                            <div className="pl-4 py-1">
+                                              {it.items.map((sub) => (
+                                                <NavLeaf key={sub.label} it={sub} onClick={() => setOpen(false)} className="block px-3 py-2 text-sm text-muted-foreground hover:text-leaf" />
+                                              ))}
+                                            </div>
+                                          </motion.div>
+                                        )}
+                                      </AnimatePresence>
+                                    </div>
+                                  );
+                                }
+                                return (
+                                  <NavLeaf key={it.label} it={it} onClick={() => setOpen(false)} className="block px-3 py-2 text-sm text-muted-foreground hover:text-leaf" />
+                                );
+                              })}
+                            </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
                   );
                 })}
-                <a href="/#join" className="block mt-2 px-5 py-3 text-center rounded-full bg-ember text-white font-bold uppercase tracking-wider">Donate</a>
+                <Link to="/donate" onClick={() => setOpen(false)} className="block mt-2 px-5 py-3 text-center rounded-full bg-ember text-white font-bold uppercase tracking-wider">Donate</Link>
               </div>
             </motion.div>
           )}
