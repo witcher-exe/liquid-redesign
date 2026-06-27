@@ -48,7 +48,7 @@ const NAV: NavEntry[] = [
       { label: "FAQ", href: "#" },
       { label: "Join With Us (Volunteer)", href: "/#join" },
       { label: "Products", href: "#" },
-      { label: "Donation", href: "/#join" },
+      { label: "Donation", to: "/donate" },
     ],
   },
 ];
