@@ -157,11 +157,11 @@ export function SiteNavbar({ transparentOnTop = false }: { transparentOnTop?: bo
                   <AnimatePresence>
                     {isActive && (
                       <motion.div
-                        initial={{ opacity: 0, y: 12, scale: 0.95 }}
+                        initial={{ opacity: 0, y: 18, scale: 0.94 }}
                         animate={{ opacity: 1, y: 0, scale: 1 }}
-                        exit={{ opacity: 0, y: 8, scale: 0.96 }}
-                        transition={{ duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
-                        className="absolute left-0 top-full pt-4 w-64"
+                        exit={{ opacity: 0, y: 10, scale: 0.96 }}
+                        transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
+                        className="absolute left-0 top-full pt-6 w-64"
                       >
                         <div className="glass-card rounded-xl p-2 shadow-2xl ring-1 ring-leaf/10">
 
@@ -176,35 +176,35 @@ export function SiteNavbar({ transparentOnTop = false }: { transparentOnTop?: bo
                                   onMouseLeave={() => setActiveSub(null)}
                                 >
                                   <motion.button
-                                    initial={{ opacity: 0, x: -8 }}
+                                    initial={{ opacity: 0, x: -10 }}
                                     animate={{ opacity: 1, x: 0 }}
-                                    transition={{ delay: idx * 0.03 }}
-                                    whileHover={{ x: 4 }}
+                                    transition={{ delay: idx * 0.04, duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                                    whileHover={{ x: 6 }}
                                     className="group w-full flex items-center justify-between px-4 py-2.5 text-sm font-medium text-ink rounded-xl hover:bg-leaf/10 hover:text-leaf-deep transition-colors"
                                   >
                                     <span>{it.label}</span>
-                                    <motion.span animate={{ x: subActive ? 3 : 0 }}>
+                                    <motion.span animate={{ x: subActive ? 4 : 0 }} transition={{ type: "spring", stiffness: 400, damping: 22 }}>
                                       <ChevronRight className="h-3.5 w-3.5" />
                                     </motion.span>
                                   </motion.button>
                                   <AnimatePresence>
                                     {subActive && (
                                       <motion.div
-                                        initial={{ opacity: 0, x: -10, scale: 0.96 }}
+                                        initial={{ opacity: 0, x: -14, scale: 0.94 }}
                                         animate={{ opacity: 1, x: 0, scale: 1 }}
                                         exit={{ opacity: 0, x: -10, scale: 0.96 }}
-                                        transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                                        className="absolute left-full top-0 pl-4 w-64"
+                                        transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                                        className="absolute left-full top-0 pl-6 w-64"
                                       >
                                         <div className="glass-card rounded-xl p-2 shadow-2xl ring-1 ring-leaf/10">
 
                                           {it.items.map((sub, si) => (
                                             <motion.div
                                               key={sub.label}
-                                              initial={{ opacity: 0, x: -6 }}
+                                              initial={{ opacity: 0, x: -8 }}
                                               animate={{ opacity: 1, x: 0 }}
-                                              transition={{ delay: si * 0.025 }}
-                                              whileHover={{ x: 4 }}
+                                              transition={{ delay: si * 0.03, duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+                                              whileHover={{ x: 6 }}
                                             >
                                               <NavLeaf
                                                 it={sub}
@@ -222,10 +222,10 @@ export function SiteNavbar({ transparentOnTop = false }: { transparentOnTop?: bo
                             return (
                               <motion.div
                                 key={it.label}
-                                initial={{ opacity: 0, x: -8 }}
+                                initial={{ opacity: 0, x: -10 }}
                                 animate={{ opacity: 1, x: 0 }}
-                                transition={{ delay: idx * 0.03 }}
-                                whileHover={{ x: 4 }}
+                                transition={{ delay: idx * 0.04, duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                                whileHover={{ x: 6 }}
                               >
                                 <NavLeaf
                                   it={it}
@@ -242,7 +242,7 @@ export function SiteNavbar({ transparentOnTop = false }: { transparentOnTop?: bo
               );
             })}
             <motion.a
-              href="/#join"
+              href="/donate"
               whileHover={{ scale: 1.06, y: -2 }}
               whileTap={{ scale: 0.96 }}
               transition={{ type: "spring", stiffness: 400, damping: 18 }}
