@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as MissionRouteImport } from './routes/mission'
 import { Route as EventsRouteImport } from './routes/events'
+import { Route as DonateRouteImport } from './routes/donate'
 import { Route as CommitteesRouteImport } from './routes/committees'
 import { Route as CampaignsRouteImport } from './routes/campaigns'
 import { Route as IndexRouteImport } from './routes/index'
@@ -23,6 +24,11 @@ const MissionRoute = MissionRouteImport.update({
 const EventsRoute = EventsRouteImport.update({
   id: '/events',
   path: '/events',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DonateRoute = DonateRouteImport.update({
+  id: '/donate',
+  path: '/donate',
   getParentRoute: () => rootRouteImport,
 } as any)
 const CommitteesRoute = CommitteesRouteImport.update({
@@ -45,6 +51,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/campaigns': typeof CampaignsRoute
   '/committees': typeof CommitteesRoute
+  '/donate': typeof DonateRoute
   '/events': typeof EventsRoute
   '/mission': typeof MissionRoute
 }
@@ -52,6 +59,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/campaigns': typeof CampaignsRoute
   '/committees': typeof CommitteesRoute
+  '/donate': typeof DonateRoute
   '/events': typeof EventsRoute
   '/mission': typeof MissionRoute
 }
@@ -60,21 +68,36 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/campaigns': typeof CampaignsRoute
   '/committees': typeof CommitteesRoute
+  '/donate': typeof DonateRoute
   '/events': typeof EventsRoute
   '/mission': typeof MissionRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/campaigns' | '/committees' | '/events' | '/mission'
+  fullPaths:
+    | '/'
+    | '/campaigns'
+    | '/committees'
+    | '/donate'
+    | '/events'
+    | '/mission'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/campaigns' | '/committees' | '/events' | '/mission'
-  id: '__root__' | '/' | '/campaigns' | '/committees' | '/events' | '/mission'
+  to: '/' | '/campaigns' | '/committees' | '/donate' | '/events' | '/mission'
+  id:
+    | '__root__'
+    | '/'
+    | '/campaigns'
+    | '/committees'
+    | '/donate'
+    | '/events'
+    | '/mission'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   CampaignsRoute: typeof CampaignsRoute
   CommitteesRoute: typeof CommitteesRoute
+  DonateRoute: typeof DonateRoute
   EventsRoute: typeof EventsRoute
   MissionRoute: typeof MissionRoute
 }
@@ -93,6 +116,13 @@ declare module '@tanstack/react-router' {
       path: '/events'
       fullPath: '/events'
       preLoaderRoute: typeof EventsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/donate': {
+      id: '/donate'
+      path: '/donate'
+      fullPath: '/donate'
+      preLoaderRoute: typeof DonateRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/committees': {
@@ -123,6 +153,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   CampaignsRoute: CampaignsRoute,
   CommitteesRoute: CommitteesRoute,
+  DonateRoute: DonateRoute,
   EventsRoute: EventsRoute,
   MissionRoute: MissionRoute,
 }
